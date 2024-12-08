@@ -1,0 +1,890 @@
+/root/projects/Aihack/code/train.py:186: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  df["r_expected_credit_limit"], df["r_propose"].map(df.groupby("r_propose")["r_expected_credit_limit"].median())
+/root/projects/Aihack/code/train.py:186: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  df["r_expected_credit_limit"], df["r_propose"].map(df.groupby("r_propose")["r_expected_credit_limit"].median())
+No path specified. Models will be saved in: "AutogluonModels/ag-20241208_033144"
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.2
+Python Version:     3.12.8
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Tue Nov 5 00:21:55 UTC 2024
+CPU Count:          12
+Memory Avail:       18.33 GB / 23.47 GB (78.1%)
+Disk Space Avail:   893.88 GB / 1006.85 GB (88.8%)
+===================================================
+Presets specified: ['high_quality']
+Setting dynamic_stacking from 'auto' to True. Reason: Enable dynamic_stacking when use_bag_holdout is disabled. (use_bag_holdout=False)
+Stack configuration (auto_stack=True): num_stack_levels=1, num_bag_folds=5, num_bag_sets=1
+Note: `save_bag_folds=False`! This will greatly reduce peak disk usage during fit (by ~5x), but runs the risk of an out-of-memory error during model refit if memory is small relative to the data size.
+	You can avoid this risk by setting `save_bag_folds=True`.
+DyStack is enabled (dynamic_stacking=True). AutoGluon will try to determine whether the input data is affected by stacked overfitting and enable or disable stacking as a consequence.
+	This is used to identify the optimal `num_stack_levels` value. Copies of AutoGluon will be fit on subsets of the data. Then holdout validation data is used to detect stacked overfitting.
+	Running DyStack for up to 900s of the 3600s of remaining time (25%).
+	Running DyStack sub-fit in a ray process to avoid memory leakage. Enabling ray logging (enable_ray_logging=True). Specify `ds_args={'enable_ray_logging': False}` if you experience logging issues.
+2024-12-08 10:31:46,025	INFO worker.py:1810 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8266 [39m[22m
+		Context path: "/root/projects/Aihack/code/AutogluonModels/ag-20241208_033144/ds_sub_fit/sub_fit_ho"
+[36m(_dystack pid=1343712)[0m Running DyStack sub-fit ...
+[36m(_dystack pid=1343712)[0m Using predefined sample weighting strategy: balance_weight. Evaluation metrics will ignore sample weights, specify weight_evaluation=True to instead report weighted metrics.
+[36m(_dystack pid=1343712)[0m Beginning AutoGluon training ... Time limit = 898s
+[36m(_dystack pid=1343712)[0m AutoGluon will save models to "/root/projects/Aihack/code/AutogluonModels/ag-20241208_033144/ds_sub_fit/sub_fit_ho"
+[36m(_dystack pid=1343712)[0m Train Data Rows:    28910
+[36m(_dystack pid=1343712)[0m Train Data Columns: 66
+[36m(_dystack pid=1343712)[0m Label Column:       y
+[36m(_dystack pid=1343712)[0m Problem Type:       binary
+[36m(_dystack pid=1343712)[0m Preprocessing data ...
+[36m(_dystack pid=1343712)[0m Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+[36m(_dystack pid=1343712)[0m Assigning sample weights to balance differences in frequency of classes.
+[36m(_dystack pid=1343712)[0m Using Feature Generators to preprocess the data ...
+[36m(_dystack pid=1343712)[0m Fitting AutoMLPipelineFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 	Available Memory:                    16955.18 MB
+[36m(_dystack pid=1343712)[0m 	Train Data (Original)  Memory Usage: 10.77 MB (0.1% of available memory)
+[36m(_dystack pid=1343712)[0m 	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+[36m(_dystack pid=1343712)[0m 	Stage 1 Generators:
+[36m(_dystack pid=1343712)[0m 		Fitting AsTypeFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 			Note: Converting 2 features to boolean dtype as they only contain 2 unique values.
+[36m(_dystack pid=1343712)[0m 	Stage 2 Generators:
+[36m(_dystack pid=1343712)[0m 		Fitting FillNaFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 	Stage 3 Generators:
+[36m(_dystack pid=1343712)[0m 		Fitting IdentityFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 		Fitting CategoryFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 			Fitting CategoryMemoryMinimizeFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 	Stage 4 Generators:
+[36m(_dystack pid=1343712)[0m 		Fitting DropUniqueFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 	Stage 5 Generators:
+[36m(_dystack pid=1343712)[0m 		Fitting DropDuplicatesFeatureGenerator...
+[36m(_dystack pid=1343712)[0m 	Types of features in original data (raw dtype, special dtypes):
+[36m(_dystack pid=1343712)[0m 		('category', []) : 20 | ['Area', 'Province', 'Shop Name', 'gender', 'date_of_birth_week', ...]
+[36m(_dystack pid=1343712)[0m 		('float', [])    : 30 | ['r_expected_credit_limit', 'r_allloan_case', 'r_spouse_income', 'Overdraft_count', 'Personal Loan_count', ...]
+[36m(_dystack pid=1343712)[0m 		('int', [])      : 16 | ['number_of_children', 'number_of_resident', 'c_number_of_employee', 'place_for_sending_information', 'r_allloan_amount', ...]
+[36m(_dystack pid=1343712)[0m 	Types of features in processed data (raw dtype, special dtypes):
+[36m(_dystack pid=1343712)[0m 		('category', [])  : 20 | ['Area', 'Province', 'Shop Name', 'gender', 'date_of_birth_week', ...]
+[36m(_dystack pid=1343712)[0m 		('float', [])     : 30 | ['r_expected_credit_limit', 'r_allloan_case', 'r_spouse_income', 'Overdraft_count', 'Personal Loan_count', ...]
+[36m(_dystack pid=1343712)[0m 		('int', [])       : 14 | ['number_of_children', 'number_of_resident', 'c_number_of_employee', 'r_allloan_amount', 'Bank inquiry_count', ...]
+[36m(_dystack pid=1343712)[0m 		('int', ['bool']) :  2 | ['place_for_sending_information', 'high_inquiry_flag']
+[36m(_dystack pid=1343712)[0m 	0.1s = Fit runtime
+[36m(_dystack pid=1343712)[0m 	66 features in original data used to generate 66 features in processed data.
+[36m(_dystack pid=1343712)[0m 	Train Data (Processed) Memory Usage: 10.38 MB (0.1% of available memory)
+[36m(_dystack pid=1343712)[0m Data preprocessing and feature engineering runtime = 0.1s ...
+[36m(_dystack pid=1343712)[0m AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+[36m(_dystack pid=1343712)[0m 	To change this, specify the eval_metric parameter of Predictor()
+[36m(_dystack pid=1343712)[0m Large model count detected (112 configs) ... Only displaying the first 3 models of each family. To see all, set `verbosity=3`.
+[36m(_dystack pid=1343712)[0m User-specified model hyperparameters to be fit:
+[36m(_dystack pid=1343712)[0m {
+[36m(_dystack pid=1343712)[0m 	'NN_TORCH': [{}, {'activation': 'elu', 'dropout_prob': 0.10077639529843717, 'hidden_size': 108, 'learning_rate': 0.002735937344002146, 'num_layers': 4, 'use_batchnorm': True, 'weight_decay': 1.356433327634438e-12, 'ag_args': {'name_suffix': '_r79', 'priority': -2}}, {'activation': 'elu', 'dropout_prob': 0.11897478034205347, 'hidden_size': 213, 'learning_rate': 0.0010474382260641949, 'num_layers': 4, 'use_batchnorm': False, 'weight_decay': 5.594471067786272e-10, 'ag_args': {'name_suffix': '_r22', 'priority': -7}}],
+[36m(_dystack pid=1343712)[0m 	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+[36m(_dystack pid=1343712)[0m 	'CAT': [{}, {'depth': 6, 'grow_policy': 'SymmetricTree', 'l2_leaf_reg': 2.1542798306067823, 'learning_rate': 0.06864209415792857, 'max_ctr_complexity': 4, 'one_hot_max_size': 10, 'ag_args': {'name_suffix': '_r177', 'priority': -1}}, {'depth': 8, 'grow_policy': 'Depthwise', 'l2_leaf_reg': 2.7997999596449104, 'learning_rate': 0.031375015734637225, 'max_ctr_complexity': 2, 'one_hot_max_size': 3, 'ag_args': {'name_suffix': '_r9', 'priority': -5}}],
+[36m(_dystack pid=1343712)[0m 	'XGB': [{}, {'colsample_bytree': 0.6917311125174739, 'enable_categorical': False, 'learning_rate': 0.018063876087523967, 'max_depth': 10, 'min_child_weight': 0.6028633586934382, 'ag_args': {'name_suffix': '_r33', 'priority': -8}}, {'colsample_bytree': 0.6628423832084077, 'enable_categorical': False, 'learning_rate': 0.08775715546881824, 'max_depth': 5, 'min_child_weight': 0.6294123374222513, 'ag_args': {'name_suffix': '_r89', 'priority': -16}}],
+[36m(_dystack pid=1343712)[0m 	'FASTAI': [{}, {'bs': 256, 'emb_drop': 0.5411770367537934, 'epochs': 43, 'layers': [800, 400], 'lr': 0.01519848858318159, 'ps': 0.23782946566604385, 'ag_args': {'name_suffix': '_r191', 'priority': -4}}, {'bs': 2048, 'emb_drop': 0.05070411322605811, 'epochs': 29, 'layers': [200, 100], 'lr': 0.08974235041576624, 'ps': 0.10393466140748028, 'ag_args': {'name_suffix': '_r102', 'priority': -11}}],
+[36m(_dystack pid=1343712)[0m 	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+[36m(_dystack pid=1343712)[0m 	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+[36m(_dystack pid=1343712)[0m 	'KNN': [{'weights': 'uniform', 'ag_args': {'name_suffix': 'Unif'}}, {'weights': 'distance', 'ag_args': {'name_suffix': 'Dist'}}],
+[36m(_dystack pid=1343712)[0m }
+[36m(_dystack pid=1343712)[0m AutoGluon will fit 2 stack levels (L1 to L2) ...
+[36m(_dystack pid=1343712)[0m Excluded models: ['NN_TORCH', 'KNN'] (Specified by `excluded_model_types`)
+[36m(_dystack pid=1343712)[0m Fitting 87 L1 models, fit_strategy="sequential" ...
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 598.26s of the 897.61s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.49%)
+[36m(_dystack pid=1343712)[0m 	0.6588	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.0s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.08s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_BAG_L1 ... Training model for up to 595.53s of the 894.88s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.48%)
+[36m(_dystack pid=1343712)[0m 	0.6835	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.19s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.07s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestGini_BAG_L1 ... Training model for up to 592.50s of the 891.85s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8705	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	1.88s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.52s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestEntr_BAG_L1 ... Training model for up to 589.81s of the 889.16s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.23s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.52s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_BAG_L1 ... Training model for up to 586.77s of the 886.12s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.55%)
+[36m(_dystack pid=1343712)[0m 	0.6185	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	20.67s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.06s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: ExtraTreesGini_BAG_L1 ... Training model for up to 565.33s of the 864.68s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	0.96s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.65s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: ExtraTreesEntr_BAG_L1 ... Training model for up to 563.25s of the 862.60s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	0.93s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.61s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: NeuralNetFastAI_BAG_L1 ... Training model for up to 561.25s of the 860.60s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.69%)
+[36m(_ray_fit pid=1345449)[0m No improvement since epoch 1: early stopping
+[36m(_ray_fit pid=1345661)[0m No improvement since epoch 1: early stopping[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(_ray_fit pid=1345870)[0m No improvement since epoch 2: early stopping[32m [repeated 2x across cluster][0m
+[36m(_dystack pid=1343712)[0m 	0.8671	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	55.61s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.28s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: XGBoost_BAG_L1 ... Training model for up to 504.84s of the 804.19s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.70%)
+[36m(_dystack pid=1343712)[0m 	0.8495	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	379.62s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	1.93s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBMLarge_BAG_L1 ... Training model for up to 123.98s of the 423.33s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.72%)
+[36m(_dystack pid=1343712)[0m 	0.7015	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	3.41s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.05s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_r177_BAG_L1 ... Training model for up to 119.03s of the 418.38s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.56%)
+[36m(_dystack pid=1343712)[0m 	0.6376	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	11.85s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.04s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_r131_BAG_L1 ... Training model for up to 106.36s of the 405.71s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.54%)
+[36m(_dystack pid=1343712)[0m 	0.6721	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.65s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.12s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: NeuralNetFastAI_r191_BAG_L1 ... Training model for up to 102.78s of the 402.13s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.70%)
+[36m(_ray_fit pid=1348285)[0m 	Ran out of time, stopping training early. (Stopping on epoch 20)
+[36m(_ray_fit pid=1348516)[0m 	Ran out of time, stopping training early. (Stopping on epoch 19)[32m [repeated 2x across cluster][0m
+[36m(_ray_fit pid=1348743)[0m No improvement since epoch 3: early stopping
+[36m(_ray_fit pid=1348517)[0m 	Ran out of time, stopping training early. (Stopping on epoch 20)
+[36m(_dystack pid=1343712)[0m 	0.8694	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	77.61s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.42s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_r9_BAG_L1 ... Training model for up to 24.34s of the 323.69s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.02%)
+[36m(_ray_fit pid=1348884)[0m 	Ran out of time, early stopping on iteration 302.
+[36m(_dystack pid=1343712)[0m 	0.6442	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	17.16s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.05s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_r96_BAG_L1 ... Training model for up to 6.37s of the 305.72s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.46%)
+[36m(_dystack pid=1343712)[0m 	0.6243	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.43s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.15s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: XGBoost_r33_BAG_L1 ... Training model for up to 3.10s of the 302.45s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.73%)
+[36m(_dystack pid=1343712)[0m 	0.6811	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	3.99s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.1s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: WeightedEnsemble_L2 ... Training model for up to 360.00s of the 297.58s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Ensemble Weights: {'RandomForestEntr_BAG_L1': 0.667, 'XGBoost_r33_BAG_L1': 0.333}
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.95s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.01s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Excluded models: ['NN_TORCH', 'KNN'] (Specified by `excluded_model_types`)
+[36m(_dystack pid=1343712)[0m Fitting 87 L2 models, fit_strategy="sequential" ...
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBMXT_BAG_L2 ... Training model for up to 294.61s of the 294.59s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.57%)
+[36m(_dystack pid=1343712)[0m 	0.6406	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.2s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.05s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_BAG_L2 ... Training model for up to 291.58s of the 291.56s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.57%)
+[36m(_dystack pid=1343712)[0m 	0.6511	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.31s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.05s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestGini_BAG_L2 ... Training model for up to 288.41s of the 288.40s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8705	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	3.07s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.59s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestEntr_BAG_L2 ... Training model for up to 284.48s of the 284.46s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8705	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	3.77s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.57s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_BAG_L2 ... Training model for up to 279.86s of the 279.85s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.66%)
+[36m(_dystack pid=1343712)[0m 	0.6231	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	11.11s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.04s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: ExtraTreesGini_BAG_L2 ... Training model for up to 267.97s of the 267.96s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8705	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	1.0s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.65s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: ExtraTreesEntr_BAG_L2 ... Training model for up to 265.96s of the 265.94s of remaining time.
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	1.01s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.64s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: NeuralNetFastAI_BAG_L2 ... Training model for up to 263.93s of the 263.91s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.81%)
+[36m(_ray_fit pid=1351185)[0m No improvement since epoch 1: early stopping
+[36m(_ray_fit pid=1351399)[0m No improvement since epoch 1: early stopping[32m [repeated 2x across cluster][0m
+[36m(_ray_fit pid=1351610)[0m No improvement since epoch 2: early stopping[32m [repeated 2x across cluster][0m
+[36m(_dystack pid=1343712)[0m 	0.8684	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	57.47s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.34s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: XGBoost_BAG_L2 ... Training model for up to 205.63s of the 205.61s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.82%)
+[36m(_dystack pid=1343712)[0m 	0.858	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	166.41s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.78s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBMLarge_BAG_L2 ... Training model for up to 38.23s of the 38.21s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.85%)
+[36m(_dystack pid=1343712)[0m 	0.6875	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	4.03s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.04s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_r177_BAG_L2 ... Training model for up to 33.32s of the 33.30s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.66%)
+[36m(_dystack pid=1343712)[0m 	0.6314	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	8.14s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.04s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_r131_BAG_L2 ... Training model for up to 24.38s of the 24.37s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.64%)
+[36m(_dystack pid=1343712)[0m 	0.6511	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	2.64s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.06s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: NeuralNetFastAI_r191_BAG_L2 ... Training model for up to 20.87s of the 20.86s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.81%)
+[36m(_ray_fit pid=1353509)[0m 	Ran out of time, stopping training early. (Stopping on epoch 3)
+[36m(_ray_fit pid=1353683)[0m 	Ran out of time, stopping training early. (Stopping on epoch 3)[32m [repeated 2x across cluster][0m
+[36m(_ray_fit pid=1353862)[0m 	Ran out of time, stopping training early. (Stopping on epoch 5)[32m [repeated 2x across cluster][0m
+[36m(_dystack pid=1343712)[0m 	0.8696	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	20.59s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.42s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: WeightedEnsemble_L3 ... Training model for up to 360.00s of the -0.69s of remaining time.
+[36m(_dystack pid=1343712)[0m 	Ensemble Weights: {'RandomForestEntr_BAG_L1': 0.5, 'XGBoost_r33_BAG_L1': 0.25, 'LightGBMLarge_BAG_L2': 0.25}
+[36m(_dystack pid=1343712)[0m 	0.8706	 = Validation score   (accuracy)
+[36m(_dystack pid=1343712)[0m 	4.99s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.01s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m AutoGluon training complete, total runtime = 903.43s ... Best model: WeightedEnsemble_L3 | Estimated inference throughput: 1498.0 rows/s (5782 batch size)
+[36m(_dystack pid=1343712)[0m Automatically performing refit_full as a post-fit operation (due to `.fit(..., refit_full=True)`
+[36m(_dystack pid=1343712)[0m Refitting models via `predictor.refit_full` using all of the data (combined train and validation)...
+[36m(_dystack pid=1343712)[0m 	Models trained in this way will have the suffix "_FULL" and have NaN validation score.
+[36m(_dystack pid=1343712)[0m 	This process is not bound by time_limit, but should take less time than the original `predictor.fit` call.
+[36m(_dystack pid=1343712)[0m 	To learn more, refer to the `.refit_full` method docstring which explains how "_FULL" models differ from normal models.
+[36m(_dystack pid=1343712)[0m Fitting 1 L1 models, fit_strategy="sequential" ...
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBMXT_BAG_L1_FULL ...
+[36m(_dystack pid=1343712)[0m 	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+[36m(_dystack pid=1343712)[0m Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+[36m(_dystack pid=1343712)[0m 	0.39s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m Fitting 1 L1 models, fit_strategy="sequential" ...
+[36m(_dystack pid=1343712)[0m Fitting model: LightGBM_BAG_L1_FULL ...
+[36m(_dystack pid=1343712)[0m 	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+[36m(_dystack pid=1343712)[0m Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+[36m(_dystack pid=1343712)[0m 	0.26s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestGini_BAG_L1_FULL | Skipping fit via cloning parent ...
+[36m(_dystack pid=1343712)[0m 	1.88s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.52s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting model: RandomForestEntr_BAG_L1_FULL | Skipping fit via cloning parent ...
+[36m(_dystack pid=1343712)[0m 	2.23s	 = Training   runtime
+[36m(_dystack pid=1343712)[0m 	0.52s	 = Validation runtime
+[36m(_dystack pid=1343712)[0m Fitting 1 L1 models, fit_strategy="sequential" ...
+[36m(_dystack pid=1343712)[0m Fitting model: CatBoost_BAG_L1_FULL ...
+[36m(_dystack pid=1343712)[0m 	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+[36m(_dystack pid=1343712)[0m 	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+[36m(_dystack pid=1343712)[0m 	Warning: Exception caused CatBoost_BAG_L1_FULL to fail during training... Skipping this model.
+[36m(_dystack pid=1343712)[0m 		catboost/cuda/cuda_lib/cuda_base.h:281: CUDA error 100: no CUDA-capable device is detected
+[36m(_dystack pid=1343712)[0m Detailed Traceback:
+[36m(_dystack pid=1343712)[0m Traceback (most recent call last):
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/trainer/abstract_trainer.py", line 2106, in _train_and_save
+[36m(_dystack pid=1343712)[0m     model = self._train_single(**model_fit_kwargs)
+[36m(_dystack pid=1343712)[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/trainer/abstract_trainer.py", line 1993, in _train_single
+[36m(_dystack pid=1343712)[0m     model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+[36m(_dystack pid=1343712)[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/models/abstract/abstract_model.py", line 925, in fit
+[36m(_dystack pid=1343712)[0m     out = self._fit(**kwargs)
+[36m(_dystack pid=1343712)[0m           ^^^^^^^^^^^^^^^^^^^
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/models/ensemble/stacker_ensemble_model.py", line 270, in _fit
+[36m(_dystack pid=1343712)[0m     return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+[36m(_dystack pid=1343712)[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/models/ensemble/bagged_ensemble_model.py", line 273, in _fit
+[36m(_dystack pid=1343712)[0m     self._fit_single(
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/models/ensemble/bagged_ensemble_model.py", line 506, in _fit_single
+[36m(_dystack pid=1343712)[0m     model_base.fit(X=X_fit, y=y_fit, time_limit=time_limit, **kwargs)
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/core/models/abstract/abstract_model.py", line 925, in fit
+[36m(_dystack pid=1343712)[0m     out = self._fit(**kwargs)
+[36m(_dystack pid=1343712)[0m           ^^^^^^^^^^^^^^^^^^^
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/autogluon/tabular/models/catboost/catboost_model.py", line 243, in _fit
+[36m(_dystack pid=1343712)[0m     self.model.fit(X, **fit_final_kwargs)
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/catboost/core.py", line 5245, in fit
+[36m(_dystack pid=1343712)[0m     self._fit(X, y, cat_features, text_features, embedding_features, None, graph, sample_weight, None, None, None, None, baseline, use_best_model,
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/catboost/core.py", line 2410, in _fit
+[36m(_dystack pid=1343712)[0m     self._train(
+[36m(_dystack pid=1343712)[0m   File "/root/miniforge3/envs/ag/lib/python3.12/site-packages/catboost/core.py", line 1790, in _train
+[36m(_dystack pid=1343712)[0m     self._object._train(train_pool, test_pool, params, allow_clear_pool, init_model._object if init_model else None)
+[36m(_dystack pid=1343712)[0m   File "_catboost.pyx", line 5017, in _catboost._CatBoost._train
+[36m(_dystack pid=1343712)[0m   File "_catboost.pyx", line 5066, in _catboost._CatBoost._train
+[36m(_dystack pid=1343712)[0m _catboost.CatBoostError: catboost/cuda/cuda_lib/cuda_base.h:281: CUDA error 100: no CUDA-capable device is detected
+[36m(_dystack pid=1343712)[0m WARNING: Refit training failure detected for 'CatBoost_BAG_L1'... Falling back to using first fold to avoid downstream exception.
+[36m(_dystack pid=1343712)[0m 	This is likely due to an out-of-memory error or other memory related issue. 
+[36m(_dystack pid=1343712)[0m 	Please create a GitHub issue if this was triggered from a non-memory related problem.
+Warning: Exception encountered during DyStack sub-fit:
+	Cannot avoid training failure during refit for 'CatBoost_BAG_L1' by falling back to copying the first fold because it does not exist! (save_bag_folds=False)
+	Please specify `save_bag_folds=True` in the `.fit` call to avoid this exception.
+	1	 = Optimal   num_stack_levels (Stacked Overfitting Occurred: False)
+	908s	 = DyStack   runtime |	2692s	 = Remaining runtime
+Starting main fit with num_stack_levels=1.
+	For future fit calls on this dataset, you can skip DyStack to save time: `predictor.fit(..., dynamic_stacking=False, num_stack_levels=1)`
+Using predefined sample weighting strategy: balance_weight. Evaluation metrics will ignore sample weights, specify weight_evaluation=True to instead report weighted metrics.
+Beginning AutoGluon training ... Time limit = 2692s
+AutoGluon will save models to "/root/projects/Aihack/code/AutogluonModels/ag-20241208_033144"
+Train Data Rows:    32524
+Train Data Columns: 66
+Label Column:       y
+Problem Type:       binary
+Preprocessing data ...
+Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+Assigning sample weights to balance differences in frequency of classes.
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    17213.83 MB
+	Train Data (Original)  Memory Usage: 12.12 MB (0.1% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+			Note: Converting 2 features to boolean dtype as they only contain 2 unique values.
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+		Fitting CategoryFeatureGenerator...
+			Fitting CategoryMemoryMinimizeFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('category', []) : 20 | ['Area', 'Province', 'Shop Name', 'gender', 'date_of_birth_week', ...]
+		('float', [])    : 30 | ['r_expected_credit_limit', 'r_allloan_case', 'r_spouse_income', 'Overdraft_count', 'Personal Loan_count', ...]
+		('int', [])      : 16 | ['number_of_children', 'number_of_resident', 'c_number_of_employee', 'place_for_sending_information', 'r_allloan_amount', ...]
+	Types of features in processed data (raw dtype, special dtypes):
+		('category', [])  : 20 | ['Area', 'Province', 'Shop Name', 'gender', 'date_of_birth_week', ...]
+		('float', [])     : 30 | ['r_expected_credit_limit', 'r_allloan_case', 'r_spouse_income', 'Overdraft_count', 'Personal Loan_count', ...]
+		('int', [])       : 14 | ['number_of_children', 'number_of_resident', 'c_number_of_employee', 'r_allloan_amount', 'Bank inquiry_count', ...]
+		('int', ['bool']) :  2 | ['place_for_sending_information', 'high_inquiry_flag']
+	0.1s = Fit runtime
+	66 features in original data used to generate 66 features in processed data.
+	Train Data (Processed) Memory Usage: 11.67 MB (0.1% of available memory)
+Data preprocessing and feature engineering runtime = 0.11s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+	To change this, specify the eval_metric parameter of Predictor()
+Large model count detected (112 configs) ... Only displaying the first 3 models of each family. To see all, set `verbosity=3`.
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}, {'activation': 'elu', 'dropout_prob': 0.10077639529843717, 'hidden_size': 108, 'learning_rate': 0.002735937344002146, 'num_layers': 4, 'use_batchnorm': True, 'weight_decay': 1.356433327634438e-12, 'ag_args': {'name_suffix': '_r79', 'priority': -2}}, {'activation': 'elu', 'dropout_prob': 0.11897478034205347, 'hidden_size': 213, 'learning_rate': 0.0010474382260641949, 'num_layers': 4, 'use_batchnorm': False, 'weight_decay': 5.594471067786272e-10, 'ag_args': {'name_suffix': '_r22', 'priority': -7}}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}, {'depth': 6, 'grow_policy': 'SymmetricTree', 'l2_leaf_reg': 2.1542798306067823, 'learning_rate': 0.06864209415792857, 'max_ctr_complexity': 4, 'one_hot_max_size': 10, 'ag_args': {'name_suffix': '_r177', 'priority': -1}}, {'depth': 8, 'grow_policy': 'Depthwise', 'l2_leaf_reg': 2.7997999596449104, 'learning_rate': 0.031375015734637225, 'max_ctr_complexity': 2, 'one_hot_max_size': 3, 'ag_args': {'name_suffix': '_r9', 'priority': -5}}],
+	'XGB': [{}, {'colsample_bytree': 0.6917311125174739, 'enable_categorical': False, 'learning_rate': 0.018063876087523967, 'max_depth': 10, 'min_child_weight': 0.6028633586934382, 'ag_args': {'name_suffix': '_r33', 'priority': -8}}, {'colsample_bytree': 0.6628423832084077, 'enable_categorical': False, 'learning_rate': 0.08775715546881824, 'max_depth': 5, 'min_child_weight': 0.6294123374222513, 'ag_args': {'name_suffix': '_r89', 'priority': -16}}],
+	'FASTAI': [{}, {'bs': 256, 'emb_drop': 0.5411770367537934, 'epochs': 43, 'layers': [800, 400], 'lr': 0.01519848858318159, 'ps': 0.23782946566604385, 'ag_args': {'name_suffix': '_r191', 'priority': -4}}, {'bs': 2048, 'emb_drop': 0.05070411322605811, 'epochs': 29, 'layers': [200, 100], 'lr': 0.08974235041576624, 'ps': 0.10393466140748028, 'ag_args': {'name_suffix': '_r102', 'priority': -11}}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'KNN': [{'weights': 'uniform', 'ag_args': {'name_suffix': 'Unif'}}, {'weights': 'distance', 'ag_args': {'name_suffix': 'Dist'}}],
+}
+AutoGluon will fit 2 stack levels (L1 to L2) ...
+Excluded models: ['KNN', 'NN_TORCH'] (Specified by `excluded_model_types`)
+Fitting 87 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 1793.97s of the 2691.63s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.51%)
+	0.6531	 = Validation score   (accuracy)
+	1.94s	 = Training   runtime
+	0.09s	 = Validation runtime
+Fitting model: LightGBM_BAG_L1 ... Training model for up to 1791.13s of the 2688.79s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.52%)
+	0.6761	 = Validation score   (accuracy)
+	2.2s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: RandomForestGini_BAG_L1 ... Training model for up to 1788.04s of the 2685.69s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	2.3s	 = Training   runtime
+	0.62s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L1 ... Training model for up to 1784.76s of the 2682.42s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	2.62s	 = Training   runtime
+	0.61s	 = Validation runtime
+Fitting model: CatBoost_BAG_L1 ... Training model for up to 1781.20s of the 2678.86s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.59%)
+	0.6255	 = Validation score   (accuracy)
+	24.76s	 = Training   runtime
+	0.06s	 = Validation runtime
+Fitting model: ExtraTreesGini_BAG_L1 ... Training model for up to 1755.65s of the 2653.30s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	1.15s	 = Training   runtime
+	0.75s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L1 ... Training model for up to 1753.31s of the 2650.97s of remaining time.
+	0.8706	 = Validation score   (accuracy)
+	1.11s	 = Training   runtime
+	0.68s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L1 ... Training model for up to 1751.07s of the 2648.73s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.76%)
+	0.866	 = Validation score   (accuracy)
+	64.56s	 = Training   runtime
+	0.34s	 = Validation runtime
+Fitting model: XGBoost_BAG_L1 ... Training model for up to 1685.69s of the 2583.34s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.75%)
+	0.8504	 = Validation score   (accuracy)
+	661.42s	 = Training   runtime
+	3.09s	 = Validation runtime
+Fitting model: LightGBMLarge_BAG_L1 ... Training model for up to 1022.84s of the 1920.50s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.75%)
+	0.6981	 = Validation score   (accuracy)
+	3.3s	 = Training   runtime
+	0.06s	 = Validation runtime
+Fitting model: CatBoost_r177_BAG_L1 ... Training model for up to 1018.00s of the 1915.66s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.60%)
+	0.6393	 = Validation score   (accuracy)
+	12.38s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: LightGBM_r131_BAG_L1 ... Training model for up to 1004.80s of the 1902.46s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.58%)
+	0.6757	 = Validation score   (accuracy)
+	2.98s	 = Training   runtime
+	0.14s	 = Validation runtime
+Fitting model: NeuralNetFastAI_r191_BAG_L1 ... Training model for up to 1000.94s of the 1898.59s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.76%)
+	0.8698	 = Validation score   (accuracy)
+	94.63s	 = Training   runtime
+	0.51s	 = Validation runtime
+Fitting model: CatBoost_r9_BAG_L1 ... Training model for up to 905.43s of the 1803.08s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.05%)
+	0.6527	 = Validation score   (accuracy)
+	19.13s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: LightGBM_r96_BAG_L1 ... Training model for up to 885.51s of the 1783.17s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.49%)
+	0.6132	 = Validation score   (accuracy)
+	1.88s	 = Training   runtime
+	0.09s	 = Validation runtime
+Fitting model: XGBoost_r33_BAG_L1 ... Training model for up to 882.78s of the 1780.43s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.76%)
+	0.8584	 = Validation score   (accuracy)
+	592.32s	 = Training   runtime
+	10.12s	 = Validation runtime
+Fitting model: ExtraTrees_r42_BAG_L1 ... Training model for up to 288.98s of the 1186.64s of remaining time.
+	0.8706	 = Validation score   (accuracy)
+	2.97s	 = Training   runtime
+	0.63s	 = Validation runtime
+Fitting model: CatBoost_r137_BAG_L1 ... Training model for up to 285.05s of the 1182.70s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.49%)
+	0.608	 = Validation score   (accuracy)
+	16.04s	 = Training   runtime
+	0.06s	 = Validation runtime
+Fitting model: NeuralNetFastAI_r102_BAG_L1 ... Training model for up to 268.18s of the 1165.84s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.80%)
+	0.8698	 = Validation score   (accuracy)
+	20.37s	 = Training   runtime
+	0.14s	 = Validation runtime
+Fitting model: CatBoost_r13_BAG_L1 ... Training model for up to 246.94s of the 1144.60s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.07%)
+	0.6346	 = Validation score   (accuracy)
+	34.84s	 = Training   runtime
+	0.06s	 = Validation runtime
+Fitting model: RandomForest_r195_BAG_L1 ... Training model for up to 211.26s of the 1108.92s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	10.52s	 = Training   runtime
+	0.62s	 = Validation runtime
+Fitting model: LightGBM_r188_BAG_L1 ... Training model for up to 199.84s of the 1097.49s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.74%)
+	0.6668	 = Validation score   (accuracy)
+	2.62s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: NeuralNetFastAI_r145_BAG_L1 ... Training model for up to 196.35s of the 1094.00s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.78%)
+	0.8697	 = Validation score   (accuracy)
+	150.42s	 = Training   runtime
+	4.05s	 = Validation runtime
+Fitting model: XGBoost_r89_BAG_L1 ... Training model for up to 44.98s of the 942.63s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.84%)
+	0.653	 = Validation score   (accuracy)
+	38.47s	 = Training   runtime
+	0.24s	 = Validation runtime
+Fitting model: LightGBM_r130_BAG_L1 ... Training model for up to 5.48s of the 903.14s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.75%)
+	0.6804	 = Validation score   (accuracy)
+	3.18s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: CatBoost_r50_BAG_L1 ... Training model for up to 1.16s of the 898.81s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.52%)
+	Time limit exceeded... Skipping CatBoost_r50_BAG_L1.
+Fitting model: WeightedEnsemble_L2 ... Training model for up to 360.00s of the 897.57s of remaining time.
+	Ensemble Weights: {'ExtraTrees_r42_BAG_L1': 0.75, 'LightGBM_r130_BAG_L1': 0.25}
+	0.8707	 = Validation score   (accuracy)
+	5.66s	 = Training   runtime
+	0.01s	 = Validation runtime
+Excluded models: ['KNN', 'NN_TORCH'] (Specified by `excluded_model_types`)
+Fitting 87 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L2 ... Training model for up to 891.89s of the 891.85s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.71%)
+	0.6262	 = Validation score   (accuracy)
+	2.39s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: LightGBM_BAG_L2 ... Training model for up to 888.70s of the 888.66s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.67%)
+	0.6741	 = Validation score   (accuracy)
+	2.96s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: RandomForestGini_BAG_L2 ... Training model for up to 884.81s of the 884.78s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	4.18s	 = Training   runtime
+	0.72s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L2 ... Training model for up to 879.61s of the 879.57s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	5.13s	 = Training   runtime
+	0.7s	 = Validation runtime
+Fitting model: CatBoost_BAG_L2 ... Training model for up to 873.49s of the 873.45s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.78%)
+	0.6263	 = Validation score   (accuracy)
+	29.8s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: ExtraTreesGini_BAG_L2 ... Training model for up to 842.85s of the 842.81s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	2.13s	 = Training   runtime
+	1.68s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L2 ... Training model for up to 838.45s of the 838.41s of remaining time.
+	0.8705	 = Validation score   (accuracy)
+	2.26s	 = Training   runtime
+	1.65s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L2 ... Training model for up to 834.00s of the 833.96s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.19%)
+	0.8687	 = Validation score   (accuracy)
+	159.16s	 = Training   runtime
+	0.81s	 = Validation runtime
+Fitting model: XGBoost_BAG_L2 ... Training model for up to 673.45s of the 673.41s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.11%)
+	0.8483	 = Validation score   (accuracy)
+	538.8s	 = Training   runtime
+	1.07s	 = Validation runtime
+Fitting model: LightGBMLarge_BAG_L2 ... Training model for up to 133.14s of the 133.09s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=1.17%)
+	0.6824	 = Validation score   (accuracy)
+	4.26s	 = Training   runtime
+	0.05s	 = Validation runtime
+Fitting model: CatBoost_r177_BAG_L2 ... Training model for up to 127.98s of the 127.94s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=0.92%)
+	0.6276	 = Validation score   (accuracy)
+	8.88s	 = Training   runtime
+	0.04s	 = Validation runtime
+Fitting model: LightGBM_r131_BAG_L2 ... Training model for up to 118.27s of the 118.23s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.88%)
+	0.65	 = Validation score   (accuracy)
+	2.93s	 = Training   runtime
+	0.07s	 = Validation runtime
+Fitting model: NeuralNetFastAI_r191_BAG_L2 ... Training model for up to 114.41s of the 114.38s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.15%)
+	0.87	 = Validation score   (accuracy)
+	85.37s	 = Training   runtime
+	0.46s	 = Validation runtime
+Fitting model: CatBoost_r9_BAG_L2 ... Training model for up to 28.14s of the 28.10s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (2.0 workers, per: cpus=6, gpus=0, memory=1.66%)
+	0.6529	 = Validation score   (accuracy)
+	16.51s	 = Training   runtime
+	0.05s	 = Validation runtime
+Fitting model: LightGBM_r96_BAG_L2 ... Training model for up to 10.80s of the 10.76s of remaining time.
+	Fitting 5 child models (S1F1 - S1F5) | Fitting with ParallelLocalFoldFittingStrategy (4.0 workers, per: cpus=3, gpus=0, memory=0.76%)
+	0.6159	 = Validation score   (accuracy)
+	2.33s	 = Training   runtime
+	0.05s	 = Validation runtime
+Fitting model: WeightedEnsemble_L3 ... Training model for up to 360.00s of the 7.36s of remaining time.
+	Ensemble Weights: {'ExtraTrees_r42_BAG_L1': 0.524, 'ExtraTreesEntr_BAG_L1': 0.095, 'LightGBM_r130_BAG_L1': 0.095, 'CatBoost_BAG_L2': 0.095, 'CatBoost_r177_BAG_L2': 0.095, 'RandomForestEntr_BAG_L1': 0.048, 'ExtraTreesGini_BAG_L1': 0.048}
+	0.8707	 = Validation score   (accuracy)
+	7.46s	 = Training   runtime
+	0.01s	 = Validation runtime
+AutoGluon training complete, total runtime = 2691.9s ... Best model: WeightedEnsemble_L3 | Estimated inference throughput: 320.7 rows/s (6505 batch size)
+Automatically performing refit_full as a post-fit operation (due to `.fit(..., refit_full=True)`
+Refitting models via `predictor.refit_full` using all of the data (combined train and validation)...
+	Models trained in this way will have the suffix "_FULL" and have NaN validation score.
+	This process is not bound by time_limit, but should take less time than the original `predictor.fit` call.
+	To learn more, refer to the `.refit_full` method docstring which explains how "_FULL" models differ from normal models.
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+2024-12-08 11:31:44,458	ERROR worker.py:422 -- Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): The worker died unexpectedly while executing this task. Check python-core-worker-*.log files for more information.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.42s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.27s	 = Training   runtime
+Fitting model: RandomForestGini_BAG_L1_FULL | Skipping fit via cloning parent ...
+	2.3s	 = Training   runtime
+	0.62s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L1_FULL | Skipping fit via cloning parent ...
+	2.62s	 = Training   runtime
+	0.61s	 = Validation runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	11.99s	 = Training   runtime
+Fitting model: ExtraTreesGini_BAG_L1_FULL | Skipping fit via cloning parent ...
+	1.15s	 = Training   runtime
+	0.75s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L1_FULL | Skipping fit via cloning parent ...
+	1.11s	 = Training   runtime
+	0.68s	 = Validation runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_BAG_L1_FULL ...
+	Stopping at the best epoch learned earlier - 2.
+	3.13s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: XGBoost_BAG_L1_FULL ...
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:32:03] WARNING: /workspace/src/common/error_msg.cc:45: `gpu_id` is deprecated since2.0.0, use `device` instead. E.g. device=cpu/cuda/cuda:0
+  warnings.warn(smsg, UserWarning)
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:32:03] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:32:32] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+	29.49s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMLarge_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.38s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r177_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	5.69s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r131_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.59s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_r191_BAG_L1_FULL ...
+	Stopping at the best epoch learned earlier - 3.
+	3.99s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r9_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	5.85s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r96_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.38s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: XGBoost_r33_BAG_L1_FULL ...
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:32:50] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:33:44] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+	54.48s	 = Training   runtime
+Fitting model: ExtraTrees_r42_BAG_L1_FULL | Skipping fit via cloning parent ...
+	2.97s	 = Training   runtime
+	0.63s	 = Validation runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r137_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	8.97s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_r102_BAG_L1_FULL ...
+	Stopping at the best epoch learned earlier - 1.
+	0.4s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r13_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	12.38s	 = Training   runtime
+Fitting model: RandomForest_r195_BAG_L1_FULL | Skipping fit via cloning parent ...
+	10.52s	 = Training   runtime
+	0.62s	 = Validation runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r188_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.34s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_r145_BAG_L1_FULL ...
+	Stopping at the best epoch learned earlier - 2.
+	6.01s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: XGBoost_r89_BAG_L1_FULL ...
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:34:13] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:34:14] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+	0.79s	 = Training   runtime
+Fitting 1 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r130_BAG_L1_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.29s	 = Training   runtime
+Fitting model: WeightedEnsemble_L2_FULL | Skipping fit via cloning parent ...
+	Ensemble Weights: {'ExtraTrees_r42_BAG_L1': 0.75, 'LightGBM_r130_BAG_L1': 0.25}
+	5.66s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.26s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.45s	 = Training   runtime
+Fitting model: RandomForestGini_BAG_L2_FULL | Skipping fit via cloning parent ...
+	4.18s	 = Training   runtime
+	0.72s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L2_FULL | Skipping fit via cloning parent ...
+	5.13s	 = Training   runtime
+	0.7s	 = Validation runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	1.78s	 = Training   runtime
+Fitting model: ExtraTreesGini_BAG_L2_FULL | Skipping fit via cloning parent ...
+	2.13s	 = Training   runtime
+	1.68s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L2_FULL | Skipping fit via cloning parent ...
+	2.26s	 = Training   runtime
+	1.65s	 = Validation runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_BAG_L2_FULL ...
+	Stopping at the best epoch learned earlier - 1.
+	2.14s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: XGBoost_BAG_L2_FULL ...
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:34:21] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+/root/miniforge3/envs/ag/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:34:29] WARNING: /workspace/src/common/error_msg.cc:27: The tree method `gpu_hist` is deprecated since 2.0.0. To use GPU training, set the `device` parameter to CUDA instead.
+
+    E.g. tree_method = "hist", device = "cuda"
+
+  warnings.warn(smsg, UserWarning)
+	8.98s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMLarge_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.37s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r177_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	2.19s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r131_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.35s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: NeuralNetFastAI_r191_BAG_L2_FULL ...
+	Stopping at the best epoch learned earlier - 4.
+	5.21s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: CatBoost_r9_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+	Warning: CatBoost on GPU is experimental. If you encounter issues, use CPU for training CatBoost instead.
+	2.51s	 = Training   runtime
+Fitting 1 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBM_r96_BAG_L2_FULL ...
+	Training S1F1 with GPU, note that this may negatively impact model quality compared to CPU training.
+Warning: GPU mode might not be installed for LightGBM, GPU training raised an exception. Falling back to CPU training...Refer to LightGBM GPU documentation: https://github.com/Microsoft/LightGBM/tree/master/python-package#build-gpu-versionOne possible method is:	pip uninstall lightgbm -y	pip install lightgbm --install-option=--gpu
+	0.27s	 = Training   runtime
+Fitting model: WeightedEnsemble_L3_FULL | Skipping fit via cloning parent ...
+	Ensemble Weights: {'ExtraTrees_r42_BAG_L1': 0.524, 'ExtraTreesEntr_BAG_L1': 0.095, 'LightGBM_r130_BAG_L1': 0.095, 'CatBoost_BAG_L2': 0.095, 'CatBoost_r177_BAG_L2': 0.095, 'RandomForestEntr_BAG_L1': 0.048, 'ExtraTreesGini_BAG_L1': 0.048}
+	7.46s	 = Training   runtime
+Updated best model to "WeightedEnsemble_L3_FULL" (Previously "WeightedEnsemble_L3"). AutoGluon will default to using "WeightedEnsemble_L3_FULL" for predict() and predict_proba().
+Refit complete, total runtime = 176.61s ... Best model: "WeightedEnsemble_L3_FULL"
+Enabling decision threshold calibration (calibrate_decision_threshold='auto', metric is valid, problem_type is 'binary')
+Calibrating decision threshold to optimize metric accuracy | Checking 51 thresholds...
+Calibrating decision threshold via fine-grained search | Checking 38 thresholds...
+	Base Threshold: 0.500	| val: 0.8707
+	Best Threshold: 0.500	| val: 0.8707
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("/root/projects/Aihack/code/AutogluonModels/ag-20241208_033144")
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 32524 entries, 0 to 32523
+Data columns (total 67 columns):
+ #   Column                                   Non-Null Count  Dtype   
+---  ------                                   --------------  -----   
+ 0   Area                                     32524 non-null  category
+ 1   Province                                 32524 non-null  category
+ 2   Shop Name                                32524 non-null  category
+ 3   gender                                   32524 non-null  category
+ 4   date_of_birth_week                       32524 non-null  category
+ 5   marital_status                           32524 non-null  category
+ 6   number_of_children                       32524 non-null  int64   
+ 7   postal_code                              32524 non-null  category
+ 8   tel_category                             32524 non-null  category
+ 9   number_of_resident                       32524 non-null  int64   
+ 10  type_of_residence                        32524 non-null  category
+ 11  c_postal_code                            32524 non-null  category
+ 12  c_business_type                          32524 non-null  category
+ 13  c_number_of_employee                     32524 non-null  int64   
+ 14  c_position                               32524 non-null  category
+ 15  c_occupation                             32524 non-null  category
+ 16  c_employment_status                      32524 non-null  category
+ 17  c_salary_payment_methods                 32524 non-null  category
+ 18  c_date_of_salary_payment                 32524 non-null  category
+ 19  media                                    32524 non-null  category
+ 20  place_for_sending_information            32524 non-null  int64   
+ 21  r_expected_credit_limit                  32524 non-null  float64 
+ 22  r_propose                                32524 non-null  category
+ 23  r_allloan_case                           32524 non-null  float64 
+ 24  r_allloan_amount                         32524 non-null  int64   
+ 25  r_spouse_income                          32524 non-null  float64 
+ 26  r_generalcode3                           32524 non-null  category
+ 27  apply                                    32524 non-null  category
+ 28  Overdraft_count                          32524 non-null  float64 
+ 29  Personal Loan_count                      32524 non-null  float64 
+ 30  Mortgage_count                           32524 non-null  float64 
+ 31  Credit Card_count                        32524 non-null  float64 
+ 32  Automobile installment purchase_count    32524 non-null  float64 
+ 33  Other installment purchase_count         32524 non-null  float64 
+ 34  Loan for agriculture_count               32524 non-null  float64 
+ 35  Other Loans_count                        32524 non-null  float64 
+ 36  Overdraft_balance                        32524 non-null  float64 
+ 37  Personal Loan_balance                    32524 non-null  float64 
+ 38  Mortgage_balance                         32524 non-null  float64 
+ 39  Credit Card_balance                      32524 non-null  float64 
+ 40  Automobile installment purchase_balance  32524 non-null  float64 
+ 41  Other installment purchase_balance       32524 non-null  float64 
+ 42  Loan for agriculture_balance             32524 non-null  float64 
+ 43  Other Loans_balance                      32524 non-null  float64 
+ 44  Bank inquiry_count                       32524 non-null  int64   
+ 45  Consumer finance inquiry_count           32524 non-null  int64   
+ 46  Leasing enquiry_count                    32524 non-null  int64   
+ 47  age                                      32524 non-null  int64   
+ 48  age_application                          32524 non-null  int64   
+ 49  total_income                             32524 non-null  float64 
+ 50  income_per_dependent                     32524 non-null  float64 
+ 51  income_per_resident                      32524 non-null  float64 
+ 52  employment_months                        32524 non-null  int64   
+ 53  job_stability_score                      32524 non-null  float64 
+ 54  living_months                            32524 non-null  int64   
+ 55  residence_stability_score                32524 non-null  float64 
+ 56  total_inquiries                          32524 non-null  int64   
+ 57  high_inquiry_flag                        32524 non-null  int64   
+ 58  debt_burden                              32524 non-null  float64 
+ 59  credit_limit_ratio                       32524 non-null  float64 
+ 60  business_risk_level                      32524 non-null  float64 
+ 61  high_risk_flags                          32524 non-null  int64   
+ 62  total_debt                               32524 non-null  float64 
+ 63  debt_products_count                      32524 non-null  int64   
+ 64  avg_debt_per_product                     32524 non-null  float64 
+ 65  credit_purpose_ratio                     32524 non-null  float64 
+ 66  y                                        32524 non-null  int64   
+dtypes: category(20), float64(30), int64(17)
+memory usage: 12.4 MB
+None
+y
+0    0.870496
+1    0.129504
+Name: proportion, dtype: float64
